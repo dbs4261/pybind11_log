@@ -1,4 +1,4 @@
-#include "pybind11_log.h"
+#include <pybind11_log.h>
 
 #include <pybind11/pybind11.h>
 #include <spdlog/spdlog.h>
@@ -27,7 +27,7 @@ void sleep_and_log() {
 }
 
 void threaded_log() {
-  py::gil_scoped_release release;  // Release the GIL when working with threads
+  pybind11::gil_scoped_release release;  // Release the GIL when working with threads
   spdlog::info("threaded_log() starts");
   std::thread t1(sleep_and_log);
   t1.join();
